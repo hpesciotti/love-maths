@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkAnswer()
+        }
+    })
+
     runGame("addition");
 
 });
@@ -26,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = " ";
+    document.getElementById("answer-box").focus();
 
     //Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
@@ -79,9 +88,9 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
-    } else if(operator === "-"){
+    } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
-    }else {
+    } else {
         alert(`Unimplemented operator ${operator}`);
         thorw`Unimplemented operator ${operator}. Aborting!`;
     }
@@ -120,7 +129,7 @@ function displaySubtractQuestion(operand1, operand2) {
 
     document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
-    document.getElementById('operator').textContent = "-"    
+    document.getElementById('operator').textContent = "-"
 
 }
 
